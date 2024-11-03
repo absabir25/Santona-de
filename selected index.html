@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Unlock Example</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer; /* বোতামে ক্লিক করার জন্য হাতের আইকন */
+            background-color: #28a745; /* বোতামের সবুজ রঙ */
+            color: white; /* লেখার রঙ সাদা */
+            border: none; /* বোতামের সীমা নেই */
+            border-radius: 5px; /* কোণ গোলাকার */
+            transition: background-color 0.3s; /* রঙ পরিবর্তনের জন্য অ্যানিমেশন */
+            margin: 10px; /* বোতামের মাঝে জায়গা */
+        }
+        button:hover {
+            background-color: #218838; /* মাউস হোভার করলে গা darker সবুজ */
+        }
+        #secondLink {
+            color: gray; /* লকড অবস্থায় ধূসর রঙ */
+            pointer-events: none; /* লক অবস্থায় ক্লিক বন্ধ */
+            margin-top: 20px; /* কিছু জায়গা */
+            display: none; /* প্রথমে লুকানো */
+        }
+        #lockIcon {
+            font-size: 18px;
+            position: relative;
+            left: -25px;
+        }
+        .hidden {
+            display: none; /* লুকানো ক্লাস */
+        }
+        #downloadButton {
+            color: gray; /* লকড অবস্থায় ধূসর রঙ */
+            pointer-events: none; /* ক্লিক বন্ধ */
+        }
+        #lockIconDownload {
+            font-size: 18px;
+            margin-right: 5px;
+        }
+    </style>
+    <script>
+        function unlockLink() {
+            // YouTube লিঙ্ক খুলবে
+            window.open("https://charityflopchristening.com/buuyg3w8?key=6d3d7eb40d5a47fbb05e6f040aa784dd", "_blank");
+
+            // দ্বিতীয় লিঙ্ককে লকড অবস্থায় দেখানোর জন্য
+            document.getElementById("secondLink").style.display = "block"; // দেখাবে
+            document.getElementById("lockIcon").classList.remove("hidden");
+
+            // ২ সেকেন্ড পরে Facebook লিঙ্কে রিডিরেক্ট করবে
+            setTimeout(function() {
+                // Facebook লিঙ্ক খুলবে
+                window.location.href = "https://youtu.be/JYd4QGfyOQM?si=siS630Ezkky0Dqak"; // Facebook লিঙ্ক
+            }, 2000);
+            
+            // DOWNLOAD/WATCH বোতাম আনলক হবে
+            document.getElementById("downloadButton").classList.remove("hidden");
+            document.getElementById("downloadButton").disabled = false; // বোতামটি এনাবল হবে
+        }
+
+        function openSecondLink() {
+            window.open("https://youtu.be/JYd4QGfyOQM?si=siS630Ezkky0Dqak", "_blank");
+        }
+    </script>
+</head>
+<body>
+    <!-- লিঙ্ক আনলক করার বোতাম -->
+    <button id="unlockButton" onclick="unlockLink()">লিঙ্কটি আনলক করতে ক্লিক করুন</button>
+    
+    <!-- DOWNLOAD/WATCH বোতাম, লকড অবস্থায় দেখাবে -->
+    <button id="downloadButton" onclick="openSecondLink()" disabled>
+        <span id="lockIconDownload">🔒</span> DOWNLOAD/WATCH
+    </button>
+
+    <!-- দ্বিতীয় লিঙ্ক (Facebook), প্রথমে লুকানো -->
+    <a id="secondLink" href="javascript:void(0);" target="_blank">
+        <span id="lockIcon">🔒</span> দ্বিতীয় লিঙ্ক (Facebook)
+    </a>
+</body>
+</html>
